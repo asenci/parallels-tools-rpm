@@ -1,0 +1,12 @@
+--- installer/blacklist-parallels.conf.orig	2019-11-19 10:33:30.603000000 +0000
++++ installer/blacklist-parallels.conf	2019-11-19 10:33:53.209000000 +0000
+@@ -6,5 +6,9 @@
+ 
+ # prevent memory corruption
+ blacklist iTCO_wdt
++
+ # prevent virtio_gpu loading
+ blacklist virtio_gpu
++
++# replace ne2k-pci driver with prl_eth
++install ne2k-pci modprobe -q prl_eth || modprobe -i ne2k-pci
