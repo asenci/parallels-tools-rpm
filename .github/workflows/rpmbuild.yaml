@@ -18,7 +18,13 @@ jobs:
         run: yum-builddep -y SPECS/parallels-tools.spec
       - name: Build packages
         id: buld-packages
-        run: rpmbuild -ba SPECS/parallels-tools.spec --define "_sourcedir ${GITHUB_WORKSPACE}/SOURCES" --define "_rpmdir ${GITHUB_WORKSPACE}/docs/%{_build_arch}/Packages" --define "_srcrpmdir ${GITHUB_WORKSPACE}/docs/Source/SPackages" --define '_build_name_fmt %%{NAME}-%%{VERSION}-%%{RELEASE}.%%{ARCH}.rpm'
+        run: >-
+          rpmbuild -ba SPECS/parallels-tools.spec
+          --define "_sourcedir ${GITHUB_WORKSPACE}/SOURCES"
+          --define "_rpmdir ${GITHUB_WORKSPACE}/docs/%{_build_arch}/Packages"
+          --define "_srcrpmdir ${GITHUB_WORKSPACE}/docs/Source/SPackages"
+          --define '_build_name_fmt %%{NAME}-%%{VERSION}-%%{RELEASE}.%%{ARCH}.rpm'
+          --define "kversion $(basename $(find /usr/src/kernels -mindepth 1 -maxdepth 1 -type d) | head -n 1)"
       - name: Update repodata
         run: find docs -mindepth 1 -maxdepth 1 -type d -not -name repodata -print0 | xargs -0 -n 1 createrepo --verbose --update
       - name: Push updates
