@@ -13,9 +13,9 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v1
       - name: Install dependencies
-        run: sudo yum install rpm-build yum-utils createrepo
+        run: yum -y install rpm-build yum-utils createrepo
       - name: Install build dependencies
-        run: sudo yum-builddep SPECS/parallels-tools.spec
+        run: yum-builddep -y SPECS/parallels-tools.spec
       - name: Build packages
         id: buld-packages
         run: rpmbuild -ba SPECS/parallels-tools.spec --define '_rpmdir docs/%{_build_arch}/Packages' --define '_srcrpmdir docs/Source/SPackages' --define '_build_name_fmt %%{NAME}-%%{VERSION}-%%{RELEASE}.%%{ARCH}.rpm'
