@@ -6,7 +6,6 @@
 Description=Parallels Tools Daemon
 DefaultDependencies=no
 Before=cloud-init-local.service
-ConditionVirtualization=parallels
 
 [Service]
 ExecStart=/usr/bin/prltoolsd -f
