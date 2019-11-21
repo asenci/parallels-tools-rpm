@@ -1,6 +1,6 @@
 Name:		parallels-tools
 Version:	15.1.1.47117
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	Parallels Tools for Linux
 
 Group:		Applications/System
@@ -170,6 +170,18 @@ find selinux -name '*.pp' -print0 | xargs -0 %{__install} -t %{buildroot}%{_data
 %{_mandir}/man8/mount.prl_fs.8.gz
 %{_presetdir}/10-parallels.preset
 %{_unitdir}/prltoolsd.service
+
+
+%post
+%systemd_post prltoolsd.service
+
+
+%preun
+%systemd_preun prltoolsd.service
+
+
+%postun
+%systemd_postun_with_restart prltoolsd.service
 
 
 %clean
