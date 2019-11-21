@@ -1,5 +1,5 @@
-# parallels-tools-rpmspec
-RPM spec for Parallels Desktop Tools
+# parallels-tools-rpm
+Parallels Desktop Tools RPM packages
 
 ### License
 Copyright (c) 2005-2016 Parallels International GmbH
