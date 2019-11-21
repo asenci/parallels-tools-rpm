@@ -3,6 +3,10 @@ on:
   push:
     branches:
       - master
+    paths-ignore:
+      - .gitignore
+      - docs/**
+      - README.md
 jobs:
   build:
     name: Main
