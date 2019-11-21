@@ -1,0 +1,11 @@
+[parallels]
+name=Parallels Desktop Tools for CentOS 7 - $basearch
+baseurl=https://asenci.github.io/parallels-tools-rpm/centos/7/$basearch
+enabled=1
+gpgcheck=0
+
+[parallels-source]
+name=Parallels Desktop Tools for CentOS 7 - $basearch - Source
+baseurl=https://asenci.github.io/parallels-tools-rpm/centos/7/Source
+enabled=0
+gpgcheck=0
