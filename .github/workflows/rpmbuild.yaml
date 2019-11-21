@@ -15,12 +15,12 @@ jobs:
       - name: Install dependencies
         run: yum -y install createrepo git rpm-build yum-utils
       - name: Install build dependencies
-        run: yum-builddep -y SPECS/parallels-tools.spec
+        run: yum-builddep -y parallels-tools.spec
       - name: Build packages
         id: buld-packages
         run: >-
-          rpmbuild -ba SPECS/parallels-tools.spec
-          --define "_sourcedir ${GITHUB_WORKSPACE}/SOURCES"
+          rpmbuild -ba parallels-tools.spec
+          --define "_sourcedir ${GITHUB_WORKSPACE}"
           --define "_rpmdir ${GITHUB_WORKSPACE}/docs/%{_build_arch}/Packages"
           --define "_srcrpmdir ${GITHUB_WORKSPACE}/docs/Source/SPackages"
           --define '_build_name_fmt %%{NAME}-%%{VERSION}-%%{RELEASE}.%%{ARCH}.rpm'
