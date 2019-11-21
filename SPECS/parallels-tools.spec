@@ -61,25 +61,25 @@ pushd kmods
 tar xzf prl_mod.tar.gz
 
 pushd prl_eth/pvmnet
-%{__make} KBUILD_DIR=%{_usrsrc}/kernels/%{kversion}
+%{__make} KERNEL_DIR=%{_usrsrc}/kernels/%{kversion}
 popd
 
 pushd prl_tg/Toolgate/Guest/Linux/prl_tg
-%{__make} KBUILD_DIR=%{_usrsrc}/kernels/%{kversion}
+%{__make} KERNEL_DIR=%{_usrsrc}/kernels/%{kversion}
 popd
 cp prl_tg/Toolgate/Guest/Linux/prl_tg/*.symvers prl_fs/SharedFolders/Guest/Linux/prl_fs
 cp prl_tg/Toolgate/Guest/Linux/prl_tg/*.symvers prl_vid/Video/Guest/Linux/kmod
 
 pushd prl_fs/SharedFolders/Guest/Linux/prl_fs
-%{__make} KBUILD_DIR=%{_usrsrc}/kernels/%{kversion}
+%{__make} KERNEL_DIR=%{_usrsrc}/kernels/%{kversion}
 popd
 
 pushd prl_fs_freeze/Snapshot/Guest/Linux/prl_freeze
-%{__make} KBUILD_DIR=%{_usrsrc}/kernels/%{kversion}
+%{__make} KERNEL_DIR=%{_usrsrc}/kernels/%{kversion}
 popd
 
 pushd prl_vid/Video/Guest/Linux/kmod
-%{__make} KBUILD_DIR=%{_usrsrc}/kernels/%{kversion}
+%{__make} KERNEL_DIR=%{_usrsrc}/kernels/%{kversion}
 popd
 
 find . -type f -name '*.ko' -print0 | xargs -0 %{__strip} --strip-debug
@@ -92,7 +92,7 @@ cp installer/*.fc selinux/
 rm -f selinux/prlvtg.*
 
 pushd selinux
-make -f %{_datadir}/selinux/devel/Makefile
+%{__make} -f %{_datadir}/selinux/devel/Makefile
 popd
 
 
