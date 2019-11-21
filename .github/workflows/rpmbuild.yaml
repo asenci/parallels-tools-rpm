@@ -34,5 +34,5 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add --all docs
-          git commit -m "Add ${{ github.ref }} packages and update repodata"
+          git commit -m "Update packages and repodata"
           git push "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" HEAD:master
