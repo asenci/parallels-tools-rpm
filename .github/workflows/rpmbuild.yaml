@@ -21,12 +21,16 @@ jobs:
         run: >-
           rpmbuild -ba parallels-tools.spec
           --define "_sourcedir ${GITHUB_WORKSPACE}"
-          --define "_rpmdir ${GITHUB_WORKSPACE}/docs/%{_build_arch}/Packages"
-          --define "_srcrpmdir ${GITHUB_WORKSPACE}/docs/Source/SPackages"
+          --define "_rpmdir ${GITHUB_WORKSPACE}/docs/centos/7/%{_build_arch}/Packages"
+          --define "_srcrpmdir ${GITHUB_WORKSPACE}/docs/centos/7/Source/SPackages"
           --define '_build_name_fmt %%{NAME}-%%{VERSION}-%%{RELEASE}.%%{ARCH}.rpm'
           --define "kversion $(basename $(find /usr/src/kernels -mindepth 1 -maxdepth 1 -type d) | head -n 1)"
       - name: Update repodata
-        run: find docs -mindepth 1 -maxdepth 1 -type d -not -name repodata -print0 | xargs -0 -n 1 createrepo --verbose --update
+        run: >-
+          find docs -type f -name '*.rpm' -print0
+           | xargs -0 -n 1 -I '%' bash -c 'dirname $(dirname %)'
+           | sort -u
+           | xargs -n 1 createrepo --verbose --update
       - name: Push updates
         run: |
           git config gc.auto 0
