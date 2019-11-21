@@ -213,10 +213,12 @@ runs properly under an environment with SELinux enabled.
 %selinux_modules_install %{_datadir}/selinux/packages/%{name}/prlfs.pp %{_datadir}/selinux/packages/%{name}/prltimesync.pp %{_datadir}/selinux/packages/%{name}/prltoolsd.pp
 %selinux_relabel_post
 
+
 %posttrans selinux
 %selinux_relabel_post
 
 %systemd_postun_with_restart prltoolsd.service
+
 
 %postun selinux
 %selinux_modules_uninstall prlfs prltimesync prltoolsd
@@ -224,3 +226,9 @@ runs properly under an environment with SELinux enabled.
 if [ $1 -eq 0 ]; then
     %selinux_relabel_post
 fi
+
+
+# Changelog
+%changelog
+* Fri Nov 22 2019 Andre Sencioles <asenci@gmail.com> - 15.1.1.47117-1
+- Initial release
