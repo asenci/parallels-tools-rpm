@@ -8,6 +8,7 @@ http://www.parallels.com
 
 ### Usage
 ```console
-~$ sudo yum install https://asenci.github.io/parallels-tools-rpm/centos/7/x86_64/Packages/parallels-tools-release-7-1.noarch.rpm
-~$ sudo yum install parallels-tools
+sudo yum install https://asenci.github.io/parallels-tools-rpm/centos/7/x86_64/Packages/parallels-tools-release-7-1.noarch.rpm
+sudo yum install parallels-tools
+sudo systemctl enable --now prltoolsd
 ```
