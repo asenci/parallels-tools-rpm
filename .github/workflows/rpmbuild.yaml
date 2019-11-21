@@ -13,7 +13,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v1
       - name: Install dependencies
-        run: yum -y install rpm-build yum-utils createrepo
+        run: yum -y install createrepo git rpm-build yum-utils
       - name: Install build dependencies
         run: yum-builddep -y SPECS/parallels-tools.spec
       - name: Build packages
@@ -29,8 +29,10 @@ jobs:
         run: find docs -mindepth 1 -maxdepth 1 -type d -not -name repodata -print0 | xargs -0 -n 1 createrepo --verbose --update
       - name: Push updates
         run: |
+          git config gc.auto 0
+          git config --global push.default simple
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add docs
-          git commit -m "Add ${{ github.ref }} packages and update repodata" -a
-          git push
+          git add --all docs
+          git commit -m "Add ${{ github.ref }} packages and update repodata"
+          git push "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" HEAD:master
