@@ -1,6 +1,6 @@
 Name:		parallels-tools
-Version:	15.1.1.47117
-Release:	3%{?dist}
+Version:	15.1.2.47123
+Release:	1%{?dist}
 Summary:	Parallels Tools for Linux
 
 Group:		Applications/System
