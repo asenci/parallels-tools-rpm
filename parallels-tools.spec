@@ -147,8 +147,6 @@ find kmods -type f -name '*.ko' -print0 | xargs -0 %{__install} -t %{buildroot}/
 %{__install} %{SOURCE11} %{buildroot}%{_prefix}/lib/modules-load.d/parallels.conf
 
 %{__install} -d %{buildroot}%{_udevrulesdir}
-%{__install} tools/parallels-cpu-hotplug.rules %{buildroot}%{_udevrulesdir}/99-parallels-cpu-hotplug.rules
-%{__install} tools/parallels-memory-hotplug.rules %{buildroot}%{_udevrulesdir}/99-parallels-memory-hotplug.rules
 %{__install} tools/parallels-video.rules %{buildroot}%{_udevrulesdir}/99-parallels-video.rules
 
 # Selinux
