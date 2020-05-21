@@ -122,7 +122,7 @@ get_filelist() {
 		echo "/lib/modules/${verrel}${dotvariant}"
 	fi
 }
-	
+
 
 get_rpmtemplate ()
 {
@@ -147,7 +147,7 @@ get_rpmtemplate ()
     if [ ! -z "$kmod_release" ]; then
         echo "Release: %{kmod_release}"
     fi
-    
+
     # Turn of the internal dep generator so we will use the kmod scripts.
     echo "%global _use_internal_dependency_generator 0"
 
@@ -197,7 +197,7 @@ cat <<EOF
 %preun         -n kmod-${kmod_name}${dashvariant}
 rpm -ql kmod-${kmod_name}${dashvariant}-%{kmod_version}-%{kmod_release}.$(arch) | grep '\.ko$' > /var/run/rpm-kmod-${kmod_name}${dashvariant}-modules
 EOF
-        
+
 cat <<EOF
 %postun        -n kmod-${kmod_name}${dashvariant}
 if [ -e "/boot/System.map-${verrel}${dotvariant}" ]; then
@@ -221,8 +221,6 @@ then
     echo "%{_sysconfdir}/modprobe.d/parallels.conf"
     echo "%{_prefix}/lib/dracut/dracut.conf.d/99-parallels.conf"
     echo "%{_prefix}/lib/modules-load.d/parallels.conf"
-    echo "%{_udevrulesdir}/99-parallels-cpu-hotplug.rules"
-    echo "%{_udevrulesdir}/99-parallels-memory-hotplug.rules"
     echo "%{_udevrulesdir}/99-parallels-video.rules"
 else
     cat "$override_filelist" | get_filelist
@@ -248,7 +246,7 @@ print_rpmtemplate ()
     echo "Couldn't find out the verrel." >&2
     exit 2
   fi
-  
+
   for variant in "$@" ; do
       if [ "default" == "$variant" ];
       then
@@ -266,13 +264,13 @@ You called: ${invocation}
 
 Usage: ${myprog} <command> <option>+
  Commands:
-  verrel <uname>                               
+  verrel <uname>
     - Get "base" version-release.
-  variant <uname>                               
+  variant <uname>
     - Get variant from uname.
-  rpmtemplate <mainpgkname> <uname> <variants> 
+  rpmtemplate <mainpgkname> <uname> <variants>
     - Return a template for use in a source RPM
-  version  
+  version
     - Output version number and exit.
 EOF
 }
