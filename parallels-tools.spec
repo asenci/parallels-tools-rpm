@@ -1,5 +1,5 @@
 Name:		parallels-tools
-Version:	15.1.4.47270
+Version:	16.0.0.48916
 Release:	1%{?dist}
 Summary:	Parallels Tools for Linux
 
@@ -240,6 +240,8 @@ fi
 
 # Changelog
 %changelog
+* Fri Aug 12 2020 Andre Sencioles <asenci@gmail.com> - 16.0.0.48916-1
+- Updated to version 16.0.0.48916
 * Fri May 22 2020 Andre Sencioles <asenci@gmail.com> - 15.1.4.47270-1
 - Updated to version 15.1.4.47270
 * Fri Nov 22 2019 Andre Sencioles <asenci@gmail.com> - 15.1.1.47117-1
